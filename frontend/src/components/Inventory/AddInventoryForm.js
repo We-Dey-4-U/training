@@ -31,15 +31,16 @@ function AddInventoryForm() {
       });
   };
 
+  
   return (
-    <div>
-      <h2>Add Inventory Item</h2>
+    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '20px', border: '1px solid #ccc', borderRadius: '5px', backgroundColor: '#f9f9f9' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Add Inventory Item</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={handleChange} />
-        <input type="text" name="description" placeholder="Description" onChange={handleChange} />
-        <input type="number" name="quantity" placeholder="Quantity" onChange={handleChange} />
-        <input type="number" name="price" placeholder="Price" onChange={handleChange} />
-        <button type="submit">Add Item</button>
+        <input type="text" name="name" placeholder="Name" onChange={handleChange} style={{ padding: '10px', marginBottom: '15px', border: '1px solid #ccc', borderRadius: '3px' }} />
+        <input type="text" name="description" placeholder="Description" onChange={handleChange} style={{ padding: '10px', marginBottom: '15px', border: '1px solid #ccc', borderRadius: '3px' }} />
+        <input type="number" name="quantity" placeholder="Quantity" onChange={handleChange} style={{ padding: '10px', marginBottom: '15px', border: '1px solid #ccc', borderRadius: '3px' }} />
+        <input type="number" name="price" placeholder="Price" onChange={handleChange} style={{ padding: '10px', marginBottom: '15px', border: '1px solid #ccc', borderRadius: '3px' }} />
+        <button type="submit" style={{ padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '3px', cursor: 'pointer' }}>Add Item</button>
       </form>
     </div>
   );
