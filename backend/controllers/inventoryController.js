@@ -35,17 +35,26 @@ exports.addInventoryItem = (req, res) => {
   };
 
 // Update inventory item
+// Update inventory item
 exports.updateInventoryItem = (req, res) => {
   const { id } = req.params;
   const { name, description, quantity, price } = req.body;
   const total_price = quantity * price; // Recalculate total price
-  Inventory.findByIdAndUpdate(id, { name, description, quantity, price, total_price }, (err) => {
-    if (err) {
+  Inventory.findOneAndUpdate(
+    { _id: id }, // Filter by ID
+    { name, description, quantity, price, total_price }, // Data to update
+    { new: true } // Return the updated document
+  )
+    .then(updatedItem => {
+      if (!updatedItem) {
+        return res.status(404).json({ error: 'Inventory item not found' });
+      }
+      res.status(200).json({ message: 'Inventory item updated successfully', updatedItem });
+    })
+    .catch(err => {
+      console.error('Error updating inventory item:', err);
       res.status(500).json({ error: 'Error updating inventory item' });
-    } else {
-      res.status(200).json({ message: 'Inventory item updated successfully' });
-    }
-  });
+    });
 };
 
 // Delete inventory item

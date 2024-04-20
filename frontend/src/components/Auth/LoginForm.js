@@ -20,7 +20,7 @@ const LoginForm = () => {
       setMessage('Login successful.');
       // Redirect user to another page upon successful login
       // Redirect user to TaskForm upon successful registration
-      navigate('/tasks');
+      navigate('/home');
     } catch (error) {
       console.error('Error logging in:', error);
       setMessage('Invalid username or password.');

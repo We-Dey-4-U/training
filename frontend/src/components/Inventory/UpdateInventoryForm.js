@@ -3,7 +3,6 @@ import api from '../../api'; // Import the Axios instance
 import '../../index.css'; // Import the CSS file
 import { Link, useNavigate } from 'react-router-dom';
 
-
 function UpdateInventoryForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -45,14 +44,14 @@ function UpdateInventoryForm() {
   };
 
   return (
-    <div>
-      <h2>Update Inventory Item</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} />
-        <input type="number" name="quantity" placeholder="Quantity" value={formData.quantity} onChange={handleChange} />
-        <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} />
-        <button type="submit">Update Item</button>
+    <div className="form-container">
+      <h2 className="form-title">Update Inventory Item</h2>
+      <form onSubmit={handleSubmit} className="update-form">
+        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} className="form-input" />
+        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} className="form-input" />
+        <input type="number" name="quantity" placeholder="Quantity" value={formData.quantity} onChange={handleChange} className="form-input" />
+        <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} className="form-input" />
+        <button type="submit" className="submit-button">Update Item</button>
       </form>
     </div>
   );

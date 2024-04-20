@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage';
 import LoginForm from './components/Auth/LoginForm';
 import RegisterForm from './components/Auth/RegisterForm';
 import TaskForm from './components/Task/TaskForm';
@@ -13,6 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+           <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/tasks" element={<TaskForm />} />

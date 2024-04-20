@@ -16,7 +16,7 @@ const RegisterForm = () => {
       console.log(response.data);
       setMessage('Registration successful. Please log in.');
       // Redirect user to TaskForm upon successful registration
-      navigate('/tasks');
+      navigate('/home');
     } catch (error) {
       console.error('Error registering user:', error);
       setMessage('Error registering user.');
