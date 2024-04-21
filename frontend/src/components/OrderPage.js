@@ -19,7 +19,10 @@ function OrderPage() {
 
       try {
         const response = await api.get(`/orders/${orderId}`);
-        setOrder(response.data.order);
+        const orderData = response.data.order;
+        const productsWithDetails = await fetchProductDetails(orderData.products);
+        orderData.products = productsWithDetails;
+        setOrder(orderData);
         setLoading(false);
       } catch (error) {
         setError('Failed to fetch order details');
@@ -29,6 +32,29 @@ function OrderPage() {
 
     fetchOrderDetails();
   }, [orderId]);
+
+  const fetchProductDetails = async (products) => {
+    const productDetails = [];
+    try {
+      for (const product of products) {
+        const response = await api.get(`/api/products/${product.product}`);
+        const fetchedProduct = response.data;
+        productDetails.push({
+          _id: fetchedProduct._id,
+          name: fetchedProduct.name,
+          price: fetchedProduct.price,
+          quantity: product.quantity,
+          image: fetchedProduct.image
+        });
+      }
+    } catch (error) {
+      console.error('Failed to fetch product details:', error);
+    }
+    return productDetails;
+  };
+
+
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -52,13 +78,13 @@ function OrderPage() {
                 <p className="product-name">Name: {product.name}</p>
                 <p className="product-price">Price: ${product.price}</p>
                 <p className="order-quantity">Quantity: {product.quantity}</p>
-                <img src={product.image} alt={product.name} className="product-image" />
-                {/* Add more details as needed */}
+                {/* Display image if available */}
+                {product.image && <img src={product.image} alt={product.name} className="product-image" />}
               </li>
             ))}
           </ul>
           <p className="total-price">Total Price: ${order.totalPrice}</p>
-          <p className="payment-method">Payment Method: {order.paymentMethod}</p>
+          {order.paymentMethod && <p className="payment-method">Payment Method: {order.paymentMethod}</p>}
         </div>
       )}
     </div>

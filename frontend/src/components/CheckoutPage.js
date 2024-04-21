@@ -45,8 +45,11 @@ function CheckoutPage() {
     setIsProcessing(true); // Set state to indicate processing
   
     try {
-      const response = await api.post('/orders/process-order', { // Use the API base URL here
-        cart: cart.map(item => ({ productId: item._id, quantity: item.quantity })),
+      // Modify the mapping of the cart array to include productId and quantity properties
+      const processedCart = cart.map(item => ({ productId: item._id, quantity: item.quantity }));
+  
+      const response = await api.post('/orders/process-order', {
+        cart: processedCart,
         totalPrice: calculateTotalPrice(),
         shippingAddress
       });

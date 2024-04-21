@@ -71,9 +71,9 @@ exports.updateOrder = async (req, res) => {
 exports.processOrder = async (req, res) => {
     try {
       const { cart, totalPrice, shippingAddress } = req.body;
-
-       // Validate request payload
-    if (!Array.isArray(cart) || typeof totalPrice !== 'number' || typeof shippingAddress !== 'object') {
+  
+      // Validate request payload
+      if (!Array.isArray(cart) || typeof totalPrice !== 'number' || typeof shippingAddress !== 'object') {
         return res.status(400).json({ error: 'Invalid request payload' });
       }
   

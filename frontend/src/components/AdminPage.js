@@ -9,7 +9,6 @@ function AdminPage() {
     return (
         <div>
             <header className="header">
-                <h1>Welcome to the Admin Page</h1>
                 <nav className="primary-nav">
                     <ul>
                         <li><Link to="/inventory/add">Add Inventory</Link></li>

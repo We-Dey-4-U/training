@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api';
 import CartContext from '../context/CartContext';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -28,11 +29,11 @@ function HomePage() {
   return (
     <div>
       <header className="header">
-        <h1>Welcome to Your App</h1>
         <nav className="primary-nav">
           <ul>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="/checkout">Cart {cart.length > 0 && <span>({cart.length})</span>}</Link></li>
+            <li><Link to="/checkout"><i className="fas fa-shopping-cart"></i>{cart.length > 0 && <span style={{ color: 'red', fontSize: '1.2rem', fontWeight: 'bold' }}>{cart.length}</span>}</Link></li>
+            
           </ul>
         </nav>
       </header>
