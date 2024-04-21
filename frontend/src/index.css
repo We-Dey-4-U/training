@@ -250,6 +250,48 @@ tr:hover {
 
 
 
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px;
+}
+
+.primary-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.primary-nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.footer {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin-right: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,6 +14,10 @@ exports.getAllTasks = async (req, res) => {
 exports.createTask = async (req, res) => {
     try {
         const { title, description } = req.body;
+         // Check if the user is admin
+         if (!req.user.isAdmin) {
+            return res.status(403).json({ error: 'Only admin users can create tasks' });
+        }
         const task = await Task.create({ title, description });
         res.status(201).json({ message: 'Task created successfully', task });
     } catch (error) {

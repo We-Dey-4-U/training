@@ -16,6 +16,10 @@ exports.getAllInventory = (req, res) => {
 exports.addInventoryItem = (req, res) => {
     const { name, description, quantity, price } = req.body;
     const total_price = quantity * price; // Calculate total price
+    // Check if the user is admin
+    if (!req.user.isAdmin) {
+      return res.status(403).json({ error: 'Only admin users can add inventory items' });
+  }
     const newItem = new Inventory({ 
         name, 
         description, 

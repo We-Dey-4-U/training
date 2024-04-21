@@ -5,11 +5,15 @@ require('dotenv').config();
 const cors = require('cors'); // Import the cors middleware
 
 
+
 // Import routes
 // Import routes
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes'); // New import
 const inventoryRoutes = require('./routes/inventoryRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const productRoutes = require('./routes/productRoutes');
+
 
 // Initialize Express app
 const app = express();
@@ -32,6 +36,8 @@ app.use(cors());
 app.use('/auth', authRoutes);
 app.use('/tasks', taskRoutes); // New route
 app.use('/api/inventory', inventoryRoutes);
+app.use('/admin', adminRoutes); // Use admin routes
+app.use('/api/products', productRoutes);
 
 
 // Error handling middleware

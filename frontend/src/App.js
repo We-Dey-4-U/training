@@ -8,6 +8,11 @@ import TaskList from './components/Task/TaskList';
 import InventoryList from './components/Inventory/InventoryList'; // Import InventoryList component
 import AddInventoryForm from './components/Inventory/AddInventoryForm'; // Import AddInventoryForm component
 import UpdateInventoryForm from './components/Inventory/UpdateInventoryForm'; // Import UpdateInventoryForm component
+import AdminPage from './components/AdminPage'; // Import AdminPage component
+import ProductList from './components/product/ProductList'; // Import ProductList component
+import AddProductForm from './components/product/ProductForm'; // Import AddProductForm component
+
+
 
 function App() {
   return (
@@ -22,6 +27,9 @@ function App() {
           <Route path="/inventory" element={<InventoryList />} /> {/* Route for InventoryList */}
           <Route path="/inventory/add" element={<AddInventoryForm />} /> {/* Route for AddInventoryForm */}
           <Route path="/inventory/:id/update" element={<UpdateInventoryForm />} /> {/* Route for UpdateInventoryForm */}
+          <Route path="/products" element={<ProductList />} /> {/* Route for ProductList */}
+          <Route path="/products/add" element={<AddProductForm />} /> {/* Route for AddProductForm */}
+          <Route path="/admin" element={<AdminPage />} /> {/* Route for AdminPage */}
           <Route path="/" element={<LoginForm />} />
         </Routes>
       </div>

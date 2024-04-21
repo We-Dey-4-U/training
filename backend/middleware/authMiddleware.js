@@ -5,7 +5,7 @@ const authenticate = (req, res, next) => {
         return res.status(401).json({ message: 'Authorization header missing' });
     }
     const token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, 'c73398b1e5bc78257c2348c84c20402656d18b904a53636e79c398fbcaf3aecb', (err, decoded) => {
+    jwt.verify(token, '323ad7bc756174c0d7eb12268f9180a51a928c3f573b931d98ba03ed1d9aef2d', (err, decoded) => {
         if (err) {
             return res.status(401).json({ message: 'Invalid token' });
         }
