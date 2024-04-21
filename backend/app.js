@@ -3,6 +3,7 @@ const connectDB = require('./config/database');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import the cors middleware
+const path = require('path');
 
 
 
@@ -13,10 +14,14 @@ const taskRoutes = require('./routes/taskRoutes'); // New import
 const inventoryRoutes = require('./routes/inventoryRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const productRoutes = require('./routes/productRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 
 
 // Initialize Express app
 const app = express();
+
+// Serve static files from the 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Connect to MongoDB
 connectDB();
@@ -38,6 +43,7 @@ app.use('/tasks', taskRoutes); // New route
 app.use('/api/inventory', inventoryRoutes);
 app.use('/admin', adminRoutes); // Use admin routes
 app.use('/api/products', productRoutes);
+app.use('/orders', orderRoutes);
 
 
 // Error handling middleware

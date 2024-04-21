@@ -11,36 +11,31 @@ exports.getAllProducts = async (req, res) => {
 };
 
 exports.getProductById = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+    try {
+      const productId = req.params.id; // Assuming the ID is provided in the request parameters
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+      res.json(product);
+    } catch (error) {
+      console.error('Error fetching product by ID:', error);
+      res.status(500).json({ message: 'Error fetching product' });
     }
-    res.json(product);
-  } catch (error) {
-    console.error('Error fetching product by ID:', error);
-    res.status(500).json({ message: 'Error fetching product' });
-  }
-};
+  };
 
 exports.createProduct = async (req, res) => {
     try {
-        // Check if req.user exists and has admin privileges
-        if (req.user && req.user.isAdmin) {
-            const { name, description, price, quantity } = req.body; // Destructure the required fields from the request body
+        const { name, description, price, quantity } = req.body; // Destructure the required fields from the request body
 
-            // Check if product image exists in the request
-            if (!req.file) {
-                return res.status(400).json({ error: 'Product image is required' });
-            }
-
-            const image = req.file.path; // Assign the path if file is uploaded
-            const product = await Product.create({ name, description, price, quantity, image }); // Create the product using the provided data
-            res.status(201).json({ message: 'Product created successfully', product });
-        } else {
-            // User is not authenticated or is not an admin
-            return res.status(403).json({ error: 'Only admins can create products' });
+        // Check if product image exists in the request
+        if (!req.file) {
+            return res.status(400).json({ error: 'Product image is required' });
         }
+
+        const image = req.file.path; // Assign the path if file is uploaded
+        const product = await Product.create({ name, description, price, quantity, image }); // Create the product using the provided data
+        res.status(201).json({ message: 'Product created successfully', product });
     } catch (error) {
         console.error('Error creating product:', error);
         
@@ -77,4 +72,34 @@ exports.deleteProduct = async (req, res) => {
     console.error('Error deleting product:', error);
     res.status(500).json({ message: 'Error deleting product' });
   }
+};
+
+
+
+
+// cartController.js
+
+exports.addToCart = async (req, res) => {
+    try {
+        const { productId, quantity } = req.body;
+
+        // Find the product by ID
+        const product = await Product.findById(productId);
+
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        // Add the product to the cart
+        // You can store cart data in the user's session, database, or elsewhere
+        // For this example, let's assume we're storing cart data in the session
+        req.session.cart = req.session.cart || [];
+        req.session.cart.push({ productId, quantity });
+
+        // Respond with a success message or updated cart data
+        res.status(200).json({ message: 'Product added to cart successfully' });
+    } catch (error) {
+        console.error('Error adding product to cart:', error);
+        res.status(500).json({ message: 'Error adding product to cart' });
+    }
 };

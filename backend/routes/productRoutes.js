@@ -16,7 +16,9 @@ const storage = multer.diskStorage({
         cb(null, uploadDir); // Destination folder for uploaded files
     },
     filename: function (req, file, cb) {
-        cb(null, new Date().toISOString() + '-' + file.originalname); // Use a unique filename
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, uniqueSuffix + ext); // Use a unique filename
     }
 });
 
@@ -40,5 +42,6 @@ router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
 router.put('/:id', productController.updateProduct);
 router.delete('/:id', productController.deleteProduct);
+router.post('/add-to-cart', productController.addToCart);
 
 module.exports = router;

@@ -293,6 +293,250 @@ tr:hover {
 
 
 
+/* CSS Styles */
+.featured-products {
+  margin-top: 20px;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  margin-top: 10px;
+}
+
+.product-card p {
+  margin-top: 10px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.cta-button,
+.add-to-cart-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+
+.cta-button {
+  background-color: #007bff;
+}
+
+.add-to-cart-button {
+  background-color: #28a745;
+}
+
+
+
+
+
+/* CheckoutPage.css */
+.checkout-container {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between; /* Position elements at the ends of the container */
+}
+
+/* Left side container */
+.left-container {
+  width: 50%; /* Occupy half of the container width */
+}
+
+/* Right side container */
+.right-container {
+  width: 50%; /* Occupy half of the container width */
+}
+
+.cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.product-image {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.product-details {
+  flex-grow: 1;
+}
+
+.checkout-summary {
+  margin-bottom: 20px;
+}
+
+.shipping-address label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.shipping-address input {
+  width: calc(100% - 20px); /* Reduce the width by 20px to account for padding */
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.shipping-address button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.shipping-address button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+.order-details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.order-id {
+  font-weight: bold;
+}
+
+.shipping-address {
+  margin-top: 20px;
+}
+
+.products-header {
+  margin-top: 20px;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.product-image {
+  max-width: 100px;
+  max-height: 100px;
+  margin-left: 20px;
+}
+
+.total-price {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.payment-method {
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.product-form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
