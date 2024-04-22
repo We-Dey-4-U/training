@@ -70,7 +70,7 @@ function OrderPage() {
   return (
     <div className="order-details-container">
       <h2>Order Details</h2>
-      <p className="order-id">Order ID: {orderId}</p>
+      <p className="order-id">Order ID: <span style={{ color: 'red' }}>{orderId}</span></p>
       {order && (
         <div>
           <p className="shipping-address">Shipping Address: {order.shippingAddress && `${order.shippingAddress.fullName}, ${order.shippingAddress.address}, ${order.shippingAddress.city}`}</p>

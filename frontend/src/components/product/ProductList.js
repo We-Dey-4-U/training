@@ -1,17 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import api from '../../api'; // Import the Axios instance
+import React, { useState, useEffect, useRef } from 'react';
+import api from '../../api';
+import Hammer from 'hammerjs';
 
-// Function to construct image URLs
 const SERVER_URL = 'http://localhost:3000';
+
 const getImageUrl = (imageName) => `${SERVER_URL}/uploads/${imageName}`;
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const imageRef = useRef(null);
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    if (imageRef.current) {
+      const hammer = new Hammer(imageRef.current);
+      hammer.on('swipeleft', handleSwipeLeft);
+      hammer.on('swiperight', handleSwipeRight);
+      return () => {
+        hammer.off('swipeleft', handleSwipeLeft);
+        hammer.off('swiperight', handleSwipeRight);
+        hammer.destroy();
+      };
+    }
+  }, [products]);
 
   const fetchProducts = async () => {
     try {
@@ -33,6 +48,21 @@ function ProductList() {
     setCart(cart.filter(item => item.id !== productId));
   };
 
+  const handleSwipeLeft = () => {
+    if (imageRef.current) {
+      imageRef.current.style.transition = 'transform 0.5s ease'; // Optional: Add a transition effect
+      imageRef.current.style.transform = 'rotate(-90deg)';
+    }
+  };
+
+  const handleSwipeRight = () => {
+    if (imageRef.current) {
+      imageRef.current.style.transform = 'rotate(90deg)';
+    }
+  };
+
+  
+
   return (
     <div>
       <h2>Products</h2>
@@ -41,7 +71,11 @@ function ProductList() {
           <div key={product.id} className="product">
             <h3>{product.name}</h3>
             <p>{product.description}</p>
-            <img src={getImageUrl(product.image)} alt={product.name} />
+            <img
+              ref={imageRef}
+              src={getImageUrl(product.image)}
+              alt={product.name}
+            />
             <p>Price: ${product.price}</p>
             <p>Quantity: {product.quantity}</p>
             <button onClick={() => addToCart(product.id)}>Add to Cart</button>

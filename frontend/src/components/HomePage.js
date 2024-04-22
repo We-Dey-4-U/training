@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import api from '../api';
 import CartContext from '../context/CartContext';
 import '@fortawesome/fontawesome-free/css/all.css';
+import ProductImage from './ProductImage'; // Import the ProductImage component
 
 function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState([]);
