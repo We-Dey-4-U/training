@@ -1,7 +1,9 @@
-// ProductList.js
-
 import React, { useState, useEffect } from 'react';
 import api from '../../api'; // Import the Axios instance
+
+// Function to construct image URLs
+const SERVER_URL = 'http://localhost:3000';
+const getImageUrl = (imageName) => `${SERVER_URL}/uploads/${imageName}`;
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -39,6 +41,7 @@ function ProductList() {
           <div key={product.id} className="product">
             <h3>{product.name}</h3>
             <p>{product.description}</p>
+            <img src={getImageUrl(product.image)} alt={product.name} />
             <p>Price: ${product.price}</p>
             <p>Quantity: {product.quantity}</p>
             <button onClick={() => addToCart(product.id)}>Add to Cart</button>

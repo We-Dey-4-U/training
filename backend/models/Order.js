@@ -21,6 +21,10 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     required: true
   },
+  paymentMethod: {
+    type: String, // Assuming paymentMethod is a string, modify it as needed
+    required: true
+  }
 }, { timestamps: true });
 
 const Order = mongoose.model('Order', orderSchema);

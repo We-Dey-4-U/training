@@ -25,12 +25,16 @@ const storage = multer.diskStorage({
 // Set up multer upload configuration
 const upload = multer({ 
     storage: storage,
-    // File filter to restrict file types
+    // File filter to accept various image formats
     fileFilter: function (req, file, cb) {
-        if (file.mimetype.startsWith('image/')) {
+        // List of accepted MIME types for image files
+        const acceptedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp']; // Add more MIME types as needed
+
+        // Check if the uploaded file's MIME type is in the accepted list
+        if (acceptedMimeTypes.includes(file.mimetype)) {
             cb(null, true); // Accept the file
         } else {
-            cb(new Error('Only image files are allowed.'), false); // Reject the file
+            cb(new Error('Only JPEG, PNG, GIF, and BMP image files are allowed.'), false); // Reject the file
         }
     }
 });

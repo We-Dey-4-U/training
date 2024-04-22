@@ -8,13 +8,14 @@ import api from '../api'; // Import the API base URL
 function CheckoutPage() {
   const { cart, calculateTotalPrice, clearCart, updateCartItemQuantity, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate(); // Initialize useNavigate hook
-
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('PayPal'); // Default to PayPal
   const [isProcessing, setIsProcessing] = useState(false); // State to track order processing
   const [shippingAddress, setShippingAddress] = useState({
     fullName: '',
     address: '',
     city: ''
   }); // State to store shipping address
+  const [bankDetails, setBankDetails] = useState(''); // State to store bank details
 
   // Handle input change for shipping address
   const handleInputChange = (e) => {
@@ -23,6 +24,14 @@ function CheckoutPage() {
       ...shippingAddress,
       [name]: value
     });
+  };
+
+  const handleSelectPaymentMethod = (method) => {
+    setSelectedPaymentMethod(method);
+  };
+
+  const handleBankDetailsChange = (e) => {
+    setBankDetails(e.target.value);
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
@@ -47,11 +56,16 @@ function CheckoutPage() {
     try {
       // Modify the mapping of the cart array to include productId and quantity properties
       const processedCart = cart.map(item => ({ productId: item._id, quantity: item.quantity }));
+
+      // Log the selected payment method to check its value
+      console.log('Selected payment method:', selectedPaymentMethod);
   
       const response = await api.post('/orders/process-order', {
         cart: processedCart,
         totalPrice: calculateTotalPrice(),
-        shippingAddress
+        shippingAddress,
+        paymentMethod: selectedPaymentMethod, // Include paymentMethod in the request payload
+        bankDetails: selectedPaymentMethod === 'BankTransfer' ? bankDetails : null // Include bankDetails if payment method is Bank Transfer
       });
       
       const { orderId } = response.data; // Extract orderId from the response data
@@ -66,7 +80,6 @@ function CheckoutPage() {
       // Handle error, show message to the user, etc.
     }
   };
-  
 
   // Handle PayPal payment completion
   const handlePaymentSuccess = (details, data) => {
@@ -124,37 +137,92 @@ function CheckoutPage() {
               City:
               <input type="text" name="city" value={shippingAddress.city} onChange={handleInputChange} />
             </label>
-            {/* Add more address fields as needed */}
+           
             <button type="submit" disabled={isProcessing}>Submit Order</button>
           </form>
         </div>
       </div>
       <div className="right-container">
-        <div className="paypal-button">
-          <PayPalScriptProvider options={{ 'client-id': 'AUZfGvEgrryvFBhpS4ioMns0ECGCehJHJBEDEHNNcekDqM-IDNOqnit1g5oIrdCDqCcnGqSU-QDf-h_l' }}>
-            <PayPalButtons
-              createOrder={(data, actions) => {
-                return actions.order.create({
-                  purchase_units: [{
-                    amount: {
-                      value: calculateTotalPrice(),
-                      currency_code: 'USD'
-                    }
-                  }]
-                });
-              }}
-              onApprove={(data, actions) => {
-                return actions.order.capture().then(function(details) {
-                  handlePaymentSuccess(details, data);
-                });
-              }}
-              onCancel={(data) => {
-                handlePaymentCancel(data);
-              }}
-              style={{ layout: 'horizontal' }} // Customize button layout
-              disabled={isProcessing} // Disable button while processing order
-            />
-          </PayPalScriptProvider>
+        <div className="payment-methods">
+          <h3>Select Payment Method</h3>
+          <div className="payment-options">
+            <label>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="PayPal"
+                checked={selectedPaymentMethod === 'PayPal'}
+                onChange={() => handleSelectPaymentMethod('PayPal')}
+              />
+              PayPal
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="Stripe"
+                checked={selectedPaymentMethod === 'Stripe'}
+                onChange={() => handleSelectPaymentMethod('Stripe')}
+              />
+              Stripe
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="CashOnDelivery"
+                checked={selectedPaymentMethod === 'CashOnDelivery'}
+                onChange={() => handleSelectPaymentMethod('CashOnDelivery')}
+              />
+              Cash on Delivery
+            </label>
+            <label>
+  <input
+    type="radio"
+    name="paymentMethod"
+    value="BankTransfer"
+    checked={selectedPaymentMethod === 'BankTransfer'}
+    onChange={() => handleSelectPaymentMethod('BankTransfer')}
+  />
+  Bank Transfer: GTB - Account Number XXXXXXXX
+</label>
+          </div>
+        </div>
+        <div className="payment-gateway">
+          {selectedPaymentMethod === 'PayPal' && (
+            <div className="paypal-button">
+              <PayPalScriptProvider options={{ 'client-id': 'AUZfGvEgrryvFBhpS4ioMns0ECGCehJHJBEDEHNNcekDqM-IDNOqnit1g5oIrdCDqCcnGqSU-QDf-h_l' }}>
+                <PayPalButtons
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: {
+                          value: calculateTotalPrice(),
+                          currency_code: 'USD'
+                        }
+                      }]
+                    });
+                  }}
+                  onApprove={(data, actions) => {
+                    return actions.order.capture().then(function(details) {
+                      handlePaymentSuccess(details, data);
+                    });
+                  }}
+                  onCancel={(data) => {
+                    handlePaymentCancel(data);
+                  }}
+                  style={{ layout: 'horizontal' }} // Customize button layout
+                  disabled={isProcessing} // Disable button while processing order
+                />
+              </PayPalScriptProvider>
+            </div>
+          )}
+          {/* Render components for other payment gateways based on selectedPaymentMethod */}
+          {selectedPaymentMethod === 'OtherPaymentGateway' && (
+            <div className="other-payment-gateway">
+              {/* Component for other payment gateway */}
+            </div>
+          )}
         </div>
       </div>
     </div>

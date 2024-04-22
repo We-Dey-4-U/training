@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Chart from './Chart'; // Import your Chart component
 import SalesReport from './SalesReport'; // Import your SalesReport component
 import InventoryReport from './InventoryReport'; // Import your InventoryReport component
+
 import '../index.css'; // Import your CSS file
 
 function AdminPage() {
@@ -22,7 +22,7 @@ function AdminPage() {
             <div className="admin-content">
                 <section className="chart-section">
                     <h2>Sales Chart</h2>
-                    <Chart />
+                    
                 </section>
 
                 <section className="report-section">

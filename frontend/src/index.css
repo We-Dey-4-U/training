@@ -360,70 +360,98 @@ tr:hover {
 
 
 
-/* CheckoutPage.css */
+/* index.css */
+
 .checkout-container {
-  margin: 20px;
   display: flex;
-  justify-content: space-between; /* Position elements at the ends of the container */
+  justify-content: space-between;
+  margin: 20px;
 }
 
-/* Left side container */
 .left-container {
-  width: 50%; /* Occupy half of the container width */
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-/* Right side container */
 .right-container {
-  width: 50%; /* Occupy half of the container width */
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }
 
-.cart-items {
+.cart-item {
+  display: flex;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .cart-item {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.cart-items h3 {
+  margin-bottom: 10px;
 }
 
 .product-image {
   width: 80px;
-  margin-right: 10px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 20px;
 }
 
 .product-details {
-  flex-grow: 1;
+  flex: 1;
 }
 
-.checkout-summary {
-  margin-bottom: 20px;
+.product-details p {
+  margin: 5px 0;
 }
 
-.shipping-address label {
+.product-details input {
+  width: 50px;
+  margin-right: 10px;
+}
+
+.payment-options label {
   display: block;
   margin-bottom: 10px;
 }
 
-.shipping-address input {
-  width: calc(100% - 20px); /* Reduce the width by 20px to account for padding */
-  padding: 8px;
-  margin-bottom: 10px;
+.shipping-address form {
+  margin-top: 20px;
 }
 
-.shipping-address button {
+.payment-gateway {
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
   background-color: #007bff;
-  color: #fff;
+  color: white;
   border: none;
-  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.shipping-address button:hover {
+button:hover {
   background-color: #0056b3;
 }
 
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 
 

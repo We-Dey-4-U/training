@@ -4,7 +4,7 @@ const Product = require('../models/Product');
 
 exports.createOrder = async (req, res) => {
   try {
-    const { products, totalPrice, shippingAddress } = req.body;
+    const { products, totalPrice, shippingAddress, paymentMethod} = req.body;
 
     // Ensure that products is an array of objects
     if (!Array.isArray(products) || !products.every(item => typeof item === 'object')) {
@@ -21,7 +21,7 @@ exports.createOrder = async (req, res) => {
       return res.status(400).json({ error: 'Invalid product object format' });
     }
 
-    const order = await Order.create({ products, totalPrice, shippingAddress });
+    const order = await Order.create({ products, totalPrice, shippingAddress, paymentMethod });
     res.status(201).json({ message: 'Order created successfully', orderId: order._id, order });
   } catch (error) {
     console.error('Error creating order:', error);
@@ -70,7 +70,7 @@ exports.updateOrder = async (req, res) => {
 
 exports.processOrder = async (req, res) => {
     try {
-      const { cart, totalPrice, shippingAddress } = req.body;
+      const { cart, totalPrice, shippingAddress , paymentMethod} = req.body;
   
       // Validate request payload
       if (!Array.isArray(cart) || typeof totalPrice !== 'number' || typeof shippingAddress !== 'object') {
@@ -101,6 +101,7 @@ exports.processOrder = async (req, res) => {
         products,
         totalPrice,
         shippingAddress,
+        paymentMethod, // Include paymentMethod field
         // Add additional fields if needed
       });
   
