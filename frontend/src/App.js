@@ -14,7 +14,7 @@ import AddProductForm from './components/product/ProductForm';
 import CheckoutPage from './components/CheckoutPage'; // Import CheckoutPage component
 import { CartProvider } from './context/CartContext'; // Import CartProvider
 import OrderPage from './components/OrderPage';
-import ThankYouPage from './components/ThankYouPage';
+
 
 function App() {
   return (
@@ -35,7 +35,6 @@ function App() {
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/checkout" element={<CheckoutPage />} /> {/* Route for CheckoutPage */}
           <Route path="/order/:orderId" element={<OrderPage />} />
-          <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/" element={<LoginForm />} />
         </Routes>
       </div>

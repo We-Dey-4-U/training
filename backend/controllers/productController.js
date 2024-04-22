@@ -24,7 +24,7 @@ exports.getProductById = async (req, res) => {
     }
   };
 
-exports.createProduct = async (req, res) => {
+  exports.createProduct = async (req, res) => {
     try {
         const { name, description, price, quantity } = req.body; // Destructure the required fields from the request body
 
@@ -33,7 +33,7 @@ exports.createProduct = async (req, res) => {
             return res.status(400).json({ error: 'Product image is required' });
         }
 
-        const image = req.file.path; // Assign the path if file is uploaded
+        const image = req.file.filename; // Use only the filename for image path
         const product = await Product.create({ name, description, price, quantity, image }); // Create the product using the provided data
         res.status(201).json({ message: 'Product created successfully', product });
     } catch (error) {

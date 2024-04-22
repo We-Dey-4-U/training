@@ -44,7 +44,7 @@ function OrderPage() {
           name: fetchedProduct.name,
           price: fetchedProduct.price,
           quantity: product.quantity,
-          image: fetchedProduct.image
+          image: getImageUrl(fetchedProduct.image) // Construct image URL
         });
       }
     } catch (error) {
@@ -53,8 +53,11 @@ function OrderPage() {
     return productDetails;
   };
 
-
-  
+  // Function to construct image URLs
+  const getImageUrl = (imageName) => {
+    const SERVER_URL = 'http://localhost:3000'; // Update with your server URL
+    return `${SERVER_URL}/uploads/${imageName}`;
+  };
 
   if (loading) {
     return <div>Loading...</div>;

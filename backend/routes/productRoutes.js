@@ -5,7 +5,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Set up multer storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const uploadDir = path.join(__dirname, '../uploads/');
@@ -22,7 +21,6 @@ const storage = multer.diskStorage({
     }
 });
 
-// Set up multer upload configuration
 const upload = multer({ 
     storage: storage,
     // File filter to accept various image formats
