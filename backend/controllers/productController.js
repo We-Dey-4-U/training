@@ -79,9 +79,16 @@ exports.deleteProduct = async (req, res) => {
 
 // cartController.js
 
+const mongoose = require('mongoose');
+
 exports.addToCart = async (req, res) => {
     try {
         const { productId, quantity } = req.body;
+
+        // Validate the productId
+        if (!mongoose.Types.ObjectId.isValid(productId)) {
+            return res.status(400).json({ message: 'Invalid product ID' });
+        }
 
         // Find the product by ID
         const product = await Product.findById(productId);
@@ -97,9 +104,13 @@ exports.addToCart = async (req, res) => {
         req.session.cart.push({ productId, quantity });
 
         // Respond with a success message or updated cart data
-        res.status(200).json({ message: 'Product added to cart successfully' });
+        res.status(200).json({ message: 'Product added to cart successfully9' });
     } catch (error) {
         console.error('Error adding product to cart:', error);
         res.status(500).json({ message: 'Error adding product to cart' });
     }
 };
+
+
+
+

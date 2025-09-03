@@ -21,6 +21,8 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true, // Make the image field optional
   },
+
+
 });
 
 const Product = mongoose.model('Product', productSchema);

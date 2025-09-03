@@ -45,5 +45,6 @@ router.get('/:id', productController.getProductById);
 router.put('/:id', productController.updateProduct);
 router.delete('/:id', productController.deleteProduct);
 router.post('/add-to-cart', productController.addToCart);
+//router.get('/featured-product', productController.getFeaturedProduct);
 
 module.exports = router;
