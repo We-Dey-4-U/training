@@ -153,7 +153,7 @@ export default function Navbar() {
           ))}
           {/* ✅ Mobile CV Button */}
           <a
-            href="/Chieke-Ikenna-CV.pdf"
+            href="/CVWITHPORTFOLIO(1).pdf"
             target="_blank"
             rel="noopener noreferrer"
             style={buttonStyle}
