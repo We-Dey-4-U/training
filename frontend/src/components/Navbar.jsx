@@ -30,6 +30,12 @@ export default function Navbar() {
     zIndex: 50,
   };
 
+  const leftSection = {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px",
+  };
+
   const logoStyle = {
     maxHeight: "70px",
     width: "auto",
@@ -108,10 +114,28 @@ export default function Navbar() {
 
   return (
     <nav style={navStyle}>
-      {/* Logo */}
-      <img src={LogoImage} alt="Logo" style={logoStyle} />
+      {/* ✅ Left side: Logo + Socials */}
+      <div style={leftSection}>
+        <img src={LogoImage} alt="Logo" style={logoStyle} />
+        {!isMobile && (
+          <div style={socialStyle}>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
+              <FaFacebookF />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
+              <FaTwitter />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
+              <FaInstagram />
+            </a>
+            <a href="https://www.linkedin.com/in/chieke-ikenna" target="_blank" rel="noopener noreferrer" style={socialIcon}>
+              <FaLinkedinIn />
+            </a>
+          </div>
+        )}
+      </div>
 
-      {/* Desktop Menu */}
+      {/* ✅ Desktop Menu */}
       {!isMobile && (
         <ul style={ulStyle}>
           {["About", "Services", "Portfolio", "Contact"].map((item) => (
@@ -138,25 +162,10 @@ export default function Navbar() {
               Download CV
             </a>
           </li>
-          {/* ✅ Social Media Icons */}
-          <li style={socialStyle}>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
-              <FaFacebookF />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
-              <FaTwitter />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
-              <FaInstagram />
-            </a>
-            <a href="https://www.linkedin.com/in/chieke-ikenna" target="_blank" rel="noopener noreferrer" style={socialIcon}>
-              <FaLinkedinIn />
-            </a>
-          </li>
         </ul>
       )}
 
-      {/* Hamburger for Mobile */}
+      {/* ✅ Hamburger for Mobile */}
       {isMobile && (
         <div style={hamburgerStyle} onClick={() => setMenuOpen(!menuOpen)}>
           <div style={barStyle}></div>
@@ -165,7 +174,7 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile Dropdown */}
+      {/* ✅ Mobile Dropdown */}
       {isMobile && (
         <div style={mobileMenuStyle}>
           {["About", "Services", "Portfolio", "Contact"].map((item) => (
@@ -187,7 +196,7 @@ export default function Navbar() {
           >
             Download CV
           </a>
-          {/* ✅ Mobile Social Icons */}
+          {/* ✅ Socials in Mobile Dropdown */}
           <div style={{ display: "flex", gap: "15px", marginTop: "10px" }}>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={socialIcon}>
               <FaFacebookF />
