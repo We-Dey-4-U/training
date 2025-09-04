@@ -28,8 +28,8 @@ export default function Footer() {
       textAlign: "left",
     },
     logo: {
-      height: "100px", // ✅ increased height
-      width: "100px", // ✅ increased width
+      height: "100px",
+      width: "100px",
       objectFit: "contain",
       marginBottom: "15px",
     },
@@ -147,17 +147,41 @@ export default function Footer() {
 
       {/* Social Media */}
       <div style={styles.social}>
-        {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
-          <a
-            key={index}
-            href="#"
-            style={styles.socialIcon}
-            onMouseOver={(e) => (e.currentTarget.style.color = "#4F46E5")}
-            onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
-          >
-            <Icon />
-          </a>
-        ))}
+        <a
+          href="#"
+          style={styles.socialIcon}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#4F46E5")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
+        >
+          <FaFacebookF />
+        </a>
+        <a
+          href="#"
+          style={styles.socialIcon}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#4F46E5")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
+        >
+          <FaTwitter />
+        </a>
+        <a
+          href="#"
+          style={styles.socialIcon}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#4F46E5")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
+        >
+          <FaInstagram />
+        </a>
+        {/* ✅ LinkedIn now points to your real profile */}
+        <a
+          href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={styles.socialIcon}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#4F46E5")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#fff")}
+        >
+          <FaLinkedinIn />
+        </a>
       </div>
 
       {/* Copyright */}
