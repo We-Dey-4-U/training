@@ -23,6 +23,20 @@ const projects = [
     images: ["/school.jpg", "/school2.jpg"],
     link: "https://salmon-lark-841503.hostingersite.com/",
   },
+  {
+    title: "Portfolio Website",
+    description:
+      "A responsive and professional personal portfolio built with React and modern UI libraries to showcase my skills, projects, and CV.",
+    images: ["/ik.jpg", "/ik.jpg"],
+    link: "https://ikenna-digital.onrender.com/", // 🔗 replace with your real portfolio link
+  },
+  {
+    title: "E-commerce Platform",
+    description:
+      "An online store with product catalog, shopping cart, user authentication, and secure checkout for seamless shopping experiences.",
+    images: ["/ecom1.jpg", "/ecom2.jpg", "/ecom3.jpg"],
+    link: "https://your-ecommerce-link.com/", // 🔗 replace with your deployed e-commerce project
+  },
 ];
 
 function ImageCarousel({ images }) {
