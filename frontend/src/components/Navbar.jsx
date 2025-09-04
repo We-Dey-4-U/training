@@ -188,7 +188,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/Chieke-Ikenna-CV.pdf"
+            href="/ikennacv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             style={buttonStyle}
