@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   const sectionStyle = {
@@ -81,14 +82,14 @@ export default function Hero() {
           and individuals.
         </p>
 
-        <a
-          href="#portfolio"
+       <Link
+          to="/portfolio"
           style={buttonStyle}
           onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
         >
           View My Work
-        </a>
+        </Link>
       </div>
     </section>
   );
