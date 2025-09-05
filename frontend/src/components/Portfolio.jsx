@@ -51,7 +51,7 @@ const youtubeProjects = [
   title: "School Management System Demo For Bursar Role",
   description:
     "Detailed walkthrough of the Bursar role in the Multi-School Management System — covering fee management, recording payments, generating reports, and managing expenses.",
-  videoUrl: "https://www.youtube.com/embed/1UiMLTRHQOE",
+  videoUrl: "https://www.youtube.com/embed/OQBgF1CsDQs",
 },
 ];
 
