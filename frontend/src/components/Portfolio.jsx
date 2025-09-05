@@ -42,17 +42,29 @@ const projects = [
 // 🔹 New YouTube Projects
 const youtubeProjects = [
   {
-   title: "School Management System Demo For Superadmin Role",
-  description:
-    "Detailed walkthrough of the Superadmin role in the Multi-School Management System — covering creation of schools, managing admins, overseeing reports, and full system control.",
-  videoUrl: "https://www.youtube.com/embed/qXHaZtqYKro",
+    title: "School Management System Demo For Superadmin Role",
+    description:
+      "Detailed walkthrough of the Superadmin role in the Multi-School Management System — covering creation of schools, managing admins, overseeing reports, and full system control.",
+    videoUrl: "https://www.youtube.com/embed/qXHaZtqYKro",
   },
   {
-  title: "School Management System Demo For Bursar Role",
-  description:
-    "Detailed walkthrough of the Bursar role in the Multi-School Management System — covering fee management, recording payments, generating reports, and managing expenses.",
-  videoUrl: "https://www.youtube.com/embed/OQBgF1CsDQs",
-},
+    title: "School Management System Demo For Bursar Role",
+    description:
+      "Detailed walkthrough of the Bursar role in the Multi-School Management System — covering fee management, recording payments, generating reports, and managing expenses.",
+    videoUrl: "https://www.youtube.com/embed/OQBgF1CsDQs",
+  },
+  {
+    title: "School Management System Demo For School Admin Role",
+    description:
+      "Detailed walkthrough of the School Admin role — managing teachers, students, class assignments, schedules, and overseeing school operations.",
+    videoUrl: "https://www.youtube.com/embed/YOUR_SCHOOLADMIN_VIDEO_ID",
+  },
+  {
+    title: "School Management System Demo For Exam Body Role",
+    description:
+      "Detailed walkthrough of the Exam Body role — creating exams, managing results, generating performance reports, and publishing student scores.",
+    videoUrl: "https://www.youtube.com/embed/YOUR_EXAMBODY_VIDEO_ID",
+  },
 ];
 
 function ImageCarousel({ images }) {
