@@ -5,10 +5,8 @@ export default function Hero() {
   const sectionStyle = {
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
-    textAlign: "center",
+    justifyContent: "center",
     padding: "0 20px",
     backgroundImage: `url('/background.png')`,
     backgroundSize: "cover",
@@ -19,21 +17,28 @@ export default function Hero() {
 
   const containerStyle = {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    gap: "20px",
+    gap: "30px",
     maxWidth: "1200px",
     width: "100%",
   };
 
+  const contentStyle = {
+    flex: 1,
+  };
+
+  const imageContainerStyle = {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+  };
+
   const imageStyle = {
-    width: "150px",
-    height: "150px",
-    borderRadius: "50%",
+    width: "100%",
+    maxWidth: "350px",
+    height: "auto",
     objectFit: "cover",
-    border: "4px solid #FACC15", // yellow border
-    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-    marginBottom: "20px",
   };
 
   const headingStyle = {
@@ -43,20 +48,20 @@ export default function Hero() {
   };
 
   const spanStyle = {
-    color: "#FACC15", // yellow highlight
+    color: "#FACC15",
   };
 
   const paraStyle = {
     fontSize: "18px",
-    maxWidth: "700px",
+    maxWidth: "600px",
     margin: "0 auto 30px auto",
+    lineHeight: "1.6",
   };
 
   const buttonContainerStyle = {
     display: "flex",
     gap: "15px",
     flexWrap: "wrap",
-    justifyContent: "center",
   };
 
   const buttonStyle = {
@@ -72,49 +77,71 @@ export default function Hero() {
 
   return (
     <section style={sectionStyle}>
-      <div style={containerStyle}>
-        {/* 👤 Your personal image */}
-        <img
-          src="/ikenna2.jpg" // replace with your image in public/
-          alt="My Profile"
-          style={imageStyle}
-        />
+      <div className="hero-container" style={containerStyle}>
+        {/* ✅ Text container FIRST in JSX */}
+        <div className="hero-text" style={contentStyle}>
+          <h2 style={headingStyle}>
+            Hi, I’m <span style={spanStyle}>Chieke Ikenna</span>
+          </h2>
+          <p style={paraStyle}>
+            I build modern, responsive websites & digital solutions for
+            businesses and individuals.
+          </p>
+          <div style={buttonContainerStyle}>
+            <Link
+              to="/portfolio"
+              style={buttonStyle}
+              onMouseOver={(e) =>
+                (e.target.style.backgroundColor = "#FDE047")
+              }
+              onMouseOut={(e) =>
+                (e.target.style.backgroundColor = "#FACC15")
+              }
+            >
+              View My Work
+            </Link>
+            <a
+              href="/ikennacv.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+              style={buttonStyle}
+              onMouseOver={(e) =>
+                (e.target.style.backgroundColor = "#FDE047")
+              }
+              onMouseOut={(e) =>
+                (e.target.style.backgroundColor = "#FACC15")
+              }
+            >
+              Download CV
+            </a>
+          </div>
+        </div>
 
-        <h2 style={headingStyle}>
-          Hi, I’m <span style={spanStyle}>Chieke Ikenna</span>
-        </h2>
-
-        <p style={paraStyle}>
-          I build modern, responsive websites & digital solutions for businesses
-          and individuals.
-        </p>
-
-        {/* ✅ Buttons */}
-        <div style={buttonContainerStyle}>
-          {/* View Work button */}
-          <Link
-            to="/portfolio"
-            style={buttonStyle}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
-          >
-            View My Work
-          </Link>
-
-          {/* Download CV button */}
-          <a
-            href="/ikennacv.pdf"
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            style={buttonStyle}
-            onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
-            onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
-          >
-            Download CV
-          </a>
+        {/* ✅ Image container SECOND in JSX */}
+        <div className="hero-image" style={imageContainerStyle}>
+          <img src="/ikenna2re.png" alt="My Profile" style={imageStyle} />
         </div>
       </div>
+
+      {/* ✅ Mobile styles */}
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .hero-container {
+              flex-direction: column;
+              text-align: center;
+            }
+            .hero-image {
+              order: -1; /* ✅ Image goes to top on mobile */
+            }
+            .hero-container img {
+              max-width: 90%;
+              margin: 0 auto 20px auto;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
