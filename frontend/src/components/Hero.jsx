@@ -10,7 +10,7 @@ export default function Hero() {
     alignItems: "center",
     textAlign: "center",
     padding: "0 20px",
-    backgroundImage: ` url('/background.png')`,
+    backgroundImage: `url('/background.png')`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -52,6 +52,13 @@ export default function Hero() {
     margin: "0 auto 30px auto",
   };
 
+  const buttonContainerStyle = {
+    display: "flex",
+    gap: "15px",
+    flexWrap: "wrap",
+    justifyContent: "center",
+  };
+
   const buttonStyle = {
     padding: "14px 32px",
     backgroundColor: "#FACC15",
@@ -82,14 +89,31 @@ export default function Hero() {
           and individuals.
         </p>
 
-       <Link
-          to="/portfolio"
-          style={buttonStyle}
-          onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
-          onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
-        >
-          View My Work
-        </Link>
+        {/* ✅ Buttons */}
+        <div style={buttonContainerStyle}>
+          {/* View Work button */}
+          <Link
+            to="/portfolio"
+            style={buttonStyle}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
+          >
+            View My Work
+          </Link>
+
+          {/* Download CV button */}
+          <a
+            href="/ikennacv.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            style={buttonStyle}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#FDE047")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#FACC15")}
+          >
+            Download CV
+          </a>
+        </div>
       </div>
     </section>
   );
