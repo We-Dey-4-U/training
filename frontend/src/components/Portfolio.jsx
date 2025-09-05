@@ -28,15 +28,31 @@ const projects = [
     description:
       "A responsive and professional personal portfolio built with React and modern UI libraries to showcase my skills, projects, and CV.",
     images: ["/ik.jpg", "/ik.jpg"],
-    link: "https://ikenna-digital.onrender.com/", // 🔗 replace with your real portfolio link
+    link: "https://ikenna-digital.onrender.com/",
   },
   {
     title: "E-commerce Platform",
     description:
       "An online store with product catalog, shopping cart, user authentication, and secure checkout for seamless shopping experiences.",
     images: ["/ecom1.jpg", "/ecom2.jpg", "/ecom3.jpg"],
-    link: "https://your-ecommerce-link.com/", // 🔗 replace with your deployed e-commerce project
+    link: "https://your-ecommerce-link.com/",
   },
+];
+
+// 🔹 New YouTube Projects
+const youtubeProjects = [
+  {
+   title: "School Management System Demo For Superadmin Role",
+  description:
+    "Detailed walkthrough of the Superadmin role in the Multi-School Management System — covering creation of schools, managing admins, overseeing reports, and full system control.",
+  videoUrl: "https://www.youtube.com/embed/qXHaZtqYKro",
+  },
+  {
+  title: "School Management System Demo For Bursar Role",
+  description:
+    "Detailed walkthrough of the Bursar role in the Multi-School Management System — covering fee management, recording payments, generating reports, and managing expenses.",
+  videoUrl: "https://www.youtube.com/embed/1UiMLTRHQOE",
+},
 ];
 
 function ImageCarousel({ images }) {
@@ -46,7 +62,6 @@ function ImageCarousel({ images }) {
     setCurrent((current - 1 + images.length) % images.length);
   const nextSlide = () => setCurrent((current + 1) % images.length);
 
-  // Auto-slide every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -184,33 +199,76 @@ export default function Portfolio() {
   };
 
   return (
-    <section style={sectionStyle}>
-      <h2 style={titleStyle}>My Projects</h2>
-      <div style={gridStyle}>
-        {projects.map((project, index) => (
-          <a
-            key={index}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={cardStyle}
-            onMouseOver={cardHover}
-            onMouseOut={cardLeave}
-          >
-            <ImageCarousel images={project.images} />
-            <div style={textContainerStyle}>
-              <h3
-                style={projectTitleStyle}
-                onMouseOver={(e) => (e.currentTarget.style.color = "#4338ca")}
-                onMouseOut={(e) => (e.currentTarget.style.color = "#4f46e5")}
-              >
-                {project.title}
-              </h3>
-              <p style={projectDescStyle}>{project.description}</p>
+    <>
+      {/* 🔹 Image-based Projects */}
+      <section style={sectionStyle}>
+        <h2 style={titleStyle}>My Projects</h2>
+        <div style={gridStyle}>
+          {projects.map((project, index) => (
+            <a
+              key={index}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={cardStyle}
+              onMouseOver={cardHover}
+              onMouseOut={cardLeave}
+            >
+              <ImageCarousel images={project.images} />
+              <div style={textContainerStyle}>
+                <h3
+                  style={projectTitleStyle}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.color = "#4338ca")
+                  }
+                  onMouseOut={(e) =>
+                    (e.currentTarget.style.color = "#4f46e5")
+                  }
+                >
+                  {project.title}
+                </h3>
+                <p style={projectDescStyle}>{project.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* 🔹 YouTube-based Projects */}
+      <section style={sectionStyle}>
+        <h2 style={titleStyle}>Project Walkthroughs (YouTube)</h2>
+        <div style={gridStyle}>
+          {youtubeProjects.map((project, index) => (
+            <div
+              key={index}
+              style={cardStyle}
+              onMouseOver={cardHover}
+              onMouseOut={cardLeave}
+            >
+              <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                <iframe
+                  src={project.videoUrl}
+                  title={project.title}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    border: 0,
+                  }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+              <div style={textContainerStyle}>
+                <h3 style={projectTitleStyle}>{project.title}</h3>
+                <p style={projectDescStyle}>{project.description}</p>
+              </div>
             </div>
-          </a>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
