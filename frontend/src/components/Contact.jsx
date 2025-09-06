@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function Contact() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -64,30 +65,49 @@ export default function Contact() {
     transition: "all 0.3s ease",
   };
 
-  const handleHover = (e) => {
-    e.currentTarget.style.backgroundColor = "#4338CA";
-  };
+  const handleHover = (e) => (e.currentTarget.style.backgroundColor = "#4338CA");
+  const handleLeave = (e) => (e.currentTarget.style.backgroundColor = "#4F46E5");
 
-  const handleLeave = (e) => {
-    e.currentTarget.style.backgroundColor = "#4F46E5";
-  };
+  // 🔹 Formspree integration with hardcoded key
+  const [state, handleSubmit] = useForm("xpznvjqe");
 
   return (
     <section id="contact" style={sectionStyle}>
       <h2 style={titleStyle}>Get In Touch</h2>
-      <p style={subtitleStyle}>Have a project in mind? Let’s collaborate and make it happen!</p>
+      <p style={subtitleStyle}>
+        Have a project in mind? Let’s collaborate and make it happen!
+      </p>
 
-      <form style={formStyle}>
-        <input type="text" placeholder="Your Name" style={inputStyle} required />
-        <input type="email" placeholder="Your Email" style={inputStyle} required />
-        <textarea placeholder="Your Message" style={textareaStyle} required></textarea>
+      <form style={formStyle} onSubmit={handleSubmit}>
+        <input type="text" placeholder="Your Name" name="name" style={inputStyle} required />
+        <ValidationError prefix="Name" field="name" errors={state.errors} />
+
+        <input type="email" placeholder="Your Email" name="email" style={inputStyle} required />
+        <ValidationError prefix="Email" field="email" errors={state.errors} />
+
+        <textarea
+          placeholder="Your Message"
+          name="message"
+          style={textareaStyle}
+          required
+        ></textarea>
+        <ValidationError prefix="Message" field="message" errors={state.errors} />
+
+        {/* Success message */}
+        {state.succeeded && (
+          <div style={{ color: "green", fontWeight: "600" }}>
+            Your message has been sent successfully!
+          </div>
+        )}
+
         <button
           type="submit"
+          disabled={state.submitting}
           style={buttonStyle}
           onMouseOver={handleHover}
           onMouseOut={handleLeave}
         >
-          Send Message
+          {state.submitting ? "Sending..." : "Send Message"}
         </button>
       </form>
     </section>
