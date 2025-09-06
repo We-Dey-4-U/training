@@ -66,13 +66,13 @@ const youtubeProjects = [
     title: "School Management System Demo For School Admin Role",
     description:
       "Detailed walkthrough of the School Admin role — managing teachers, students, class assignments, schedules, and overseeing school operations.",
-    videoUrl: "https://www.youtube.com/embed/YOUR_SCHOOLADMIN_VIDEO_ID",
+    videoUrl: "https://www.youtube.com/embed/S8gr2uofG7o",  
   },
   {
     title: "School Management System Demo For Exam Body Role",
     description:
       "Detailed walkthrough of the Exam Body role — creating exams, managing results, generating performance reports, and publishing student scores.",
-    videoUrl: "https://www.youtube.com/embed/YOUR_EXAMBODY_VIDEO_ID",
+    videoUrl: "https://www.youtube.com/embed/iZE82HpEFoA",  
   },
   {
     title: "Web3 Token & DApp Walkthrough",
@@ -269,7 +269,7 @@ export default function Portfolio() {
 
       {/* 🔹 YouTube-based Projects */}
       <section style={sectionStyle}>
-        <h2 style={titleStyle}>Project Walkthroughs (YouTube)</h2>
+        <h2 style={titleStyle}>Project Walkthroughs (YouTube) Demo</h2>
         <div style={gridStyle}>
           {youtubeProjects.map((project, index) => (
             <div
