@@ -138,10 +138,10 @@ export default function Navbar() {
       {/* ✅ Desktop Menu */}
       {!isMobile && (
         <ul style={ulStyle}>
-          {["About", "Services", "Portfolio", "Contact"].map((item) => (
+          {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
             <li key={item}>
               <a
-                href={`#${item.toLowerCase()}`}
+                href={item === "Home" ? "/" : `#${item.toLowerCase()}`}
                 style={linkStyle}
                 onMouseOver={(e) => (e.target.style.color = hoverStyle.color)}
                 onMouseOut={(e) => (e.target.style.color = "#ffffff")}
@@ -177,10 +177,10 @@ export default function Navbar() {
       {/* ✅ Mobile Dropdown */}
       {isMobile && (
         <div style={mobileMenuStyle}>
-          {["About", "Services", "Portfolio", "Contact"].map((item) => (
+          {["Home", "About", "Services", "Portfolio", "Contact"].map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={item === "Home" ? "/" : `#${item.toLowerCase()}`}
               style={linkStyle}
               onClick={() => setMenuOpen(false)}
             >
