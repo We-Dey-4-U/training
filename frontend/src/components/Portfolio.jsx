@@ -8,6 +8,15 @@ const projects = [
       "A decentralized application where I wrote and deployed smart contracts to create tokens and manage blockchain-based transactions.",
     images: ["/utrx23.jpg", "/pol.jpg", "/tokenvalue.jpg"],
     link: "https://utrxtoken.org/",
+    videoUrl: "https://www.youtube.com/embed/YOUR_WEB3_VIDEO_ID", // Walkthrough video
+  },
+  {
+    title: "Agricultural Investment Dashboard",
+    description:
+      "Users can invest in agricultural projects, monitor ROI, track investment dates, and maturity schedules through an interactive dashboard.",
+    images: ["/agriculture1.jpg", "/agriculture2.jpg", "/agriculture3.jpg"],
+    link: "https://goldenrod-porpoise-476886.hostingersite.com/agrovest", // Link to live demo if available
+    videoUrl: "https://www.youtube.com/embed/YOUR_AGRIC_VIDEO_ID", // Walkthrough video
   },
   {
     title: "Artisan Connect App",
@@ -64,6 +73,18 @@ const youtubeProjects = [
     description:
       "Detailed walkthrough of the Exam Body role — creating exams, managing results, generating performance reports, and publishing student scores.",
     videoUrl: "https://www.youtube.com/embed/YOUR_EXAMBODY_VIDEO_ID",
+  },
+  {
+    title: "Web3 Token & DApp Walkthrough",
+    description:
+      "Step-by-step demonstration of the Web3 Token & DApp project — covering smart contracts, token creation, and blockchain transactions.",
+    videoUrl: "https://www.youtube.com/embed/0L22euSZ3WA", 
+  },
+  {
+    title: "Agricultural Investment Dashboard Walkthrough",
+    description:
+      "Explains the agricultural investment project, showing how users invest, track ROI, view investment & maturity dates on the dashboard.",
+    videoUrl: "https://www.youtube.com/embed/3OtUvq91Koc", 
   },
 ];
 
